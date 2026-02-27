@@ -20,4 +20,4 @@ Bronze → Silver → Gold layered design
 - Git & GitHub
 
 ## Project Structure
-See `/sql` for implementation scripts.
+See `/sql` for implementation scripts.   
