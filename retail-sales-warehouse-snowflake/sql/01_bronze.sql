@@ -1,18 +1,13 @@
-USE DATABASE SNOWFLAKE_SAMPLE_DATA;
-DESC TABLE TPCDS_SF100TCL.STORE_SALES;
-
-SELECT COUNT(*)
-FROM TPCDS_SF100TCL.STORE_SALES;
-
-USE WAREHOUSE COMPUTE_WH;
-USE DATABASE SNOWFLAKE_LEARNING_DB;
-CREATE SCHEMA IF NOT EXISTS BRONZE;
-
-CREATE OR REPLACE TABLE BRONZE.STORE_SALES_RAW AS 
-SELECT *
-FROM SNOWFLAKE_SAMPLE_DATA.TPCDS_SF100TCL.STORE_SALES
-LIMIT 5000000000;
-
+use database snowflake_sample_data;
+desc table tpcds_sf100tcl.store_sales;
+select count(*) from tpcds_sf100tcl.store_sales;
+use warehouse compute_wh;
+use database snowflake_learning_db;
+create schema if not exists bronze;
+create or replace table bronze.store_sales_raw 
+as select * from snowflake_sample_data.tpcds_sf100tcl.store_sales
+limit 10000000;
+---phase 3 : data validation
 
 select count(*) from bronze.store_sales_raw;
 select count(*) from snowflake_sample_data.tpcds_sf100tcl.store_sales;
